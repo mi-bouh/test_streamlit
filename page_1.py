@@ -1,7 +1,8 @@
 import streamlit as st
 import pandas as pd
 
-
+if "variable" in st.session_state:
+    st.session_state.variable = st.session_state.variable
 
 st.title("Cocorico !")
 st.header("Analyse de chants d'oiseaux")
