@@ -1,7 +1,4 @@
 import streamlit as st
 
-st.write("Salut")
-
-a = st.text_input("Entrez un nombre", value="Nombre")
-
-st.write(f"Le carré de votre nombre est : {int(a)^2}")
+title = st.text_input("Movie title", "Life of Brian")
+st.write("The current movie title is", title)
