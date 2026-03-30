@@ -2,4 +2,4 @@ import streamlit as st
 
 st.title("Salut !")
 
-st.write(st.session_state["variable"])
+variable = st.text_input("Envoyer l'extrait", key="variable")
