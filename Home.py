@@ -1,6 +1,5 @@
+# streamlit_app.py
 import streamlit as st
 
-pages = {st.Page("Page 1.py", title="Create your account")}
-
-pg = st.navigation(pages)
+pg = st.navigation([st.Page("page_1.py"), st.Page("page_2.py")])
 pg.run()
