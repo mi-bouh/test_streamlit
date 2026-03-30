@@ -7,4 +7,4 @@ try:
 except ValueError:
     b = "Vous n'avez pas entré de nombre"
 
-st.write("Le carré de votre nombre est", int(a)**2)
+st.write("Le carré de votre nombre est", b)
