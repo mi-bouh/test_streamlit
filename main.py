@@ -1,5 +1,7 @@
-print("Salut")
+import streamlit as st
+
+st.write("Salut")
 
 a = input("Tapez un nombre: ")
 
-print(f"Le carré de votre nombre est : {a^2}")
+st.write(f"Le carré de votre nombre est : {a^2}")
