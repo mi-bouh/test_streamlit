@@ -9,4 +9,3 @@ st.page_link("page_2.py", label="Choisissez un fichier :")
 uploaded_file = st.file_uploader("Fichier :", type="mp3", label_visibility="collapsed")
 st.button("Envoyer l'extrait")
 
-st.write(st.session_state["variable"])
