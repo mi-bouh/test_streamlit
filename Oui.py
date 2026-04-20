@@ -1,6 +1,6 @@
 import streamlit as st
 
-audio_path = "C:\Users\2471794\Downloads\01 Plus tôt.mp3"
+audio_path = "01 Plus tôt.mp3"
 
 st.write("Extraits audio :")
 st.audio(audio_path, format="audio/mpeg")
