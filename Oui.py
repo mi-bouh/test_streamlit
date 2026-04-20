@@ -1,4 +1,7 @@
 import streamlit as st
 
-st.audio_input("Enregistrez !")
-st.button("Soumettre l'enregistrement audio")
+audio = st.audio_input("Enregistrez !")
+oui = st.button("Soumettre l'enregistrement audio")
+
+if oui:
+    st.audio(audio)
