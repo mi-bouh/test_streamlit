@@ -22,5 +22,3 @@ if oui:
 
 if afficher:
     st.write("Cet oiseau est : ", oiseau)
-
-st.rerun()
