@@ -30,6 +30,6 @@ if not st.session_state.afficher:
         oui = False
         st.rerun()
 
-if st.session_state.afficher:
-    st.write("Cet oiseau est : ", oiseau)
-    st.session_state.nouveau = st.button("Détecter un nouvel oiseau")
+    if st.session_state.afficher:
+        st.write("Cet oiseau est : ", oiseau)
+        st.session_state.nouveau = st.button("Détecter un nouvel oiseau")
