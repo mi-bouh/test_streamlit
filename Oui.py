@@ -5,8 +5,9 @@ audio = st.audio_input("Enregistrez !")
 oui = st.button("Soumettre l'enregistrement audio")
 oiseau = "Coucou"
 afficher = False
+variable = 3
 
-while afficher == False:
+while variable == 5:
     if oui:
         import time
         st.write("Veuillez patienter...")
