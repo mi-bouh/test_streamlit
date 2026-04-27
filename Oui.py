@@ -7,7 +7,7 @@ oiseau = "Coucou"
 afficher = False
 variable = 3
 
-while variable == 3:
+for i in range(2):
     if oui:
         import time
         st.write("Veuillez patienter...")
