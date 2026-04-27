@@ -19,5 +19,4 @@ if oui:
         progress_bar.progress(i + 1)
 
     afficher = False
-    if afficher == False :
-        st.write("Cet oiseau est : ", oiseau)
+    st.write("Cet oiseau est : ", oiseau)
