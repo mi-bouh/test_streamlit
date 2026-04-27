@@ -6,19 +6,20 @@ oui = st.button("Soumettre l'enregistrement audio")
 oiseau = "Coucou"
 afficher = False
 
-if oui:
-    import time
-    st.write("Veuillez patienter...")
+while afficher == False:
+    if oui:
+        import time
+        st.write("Veuillez patienter...")
 
-    progress_bar = st.progress(0)
+        progress_bar = st.progress(0)
 
-    for i in range(100):
-        time.sleep(0.07)
-        progress_bar.progress(i + 1)
+        for i in range(100):
+            time.sleep(0.07)
+            progress_bar.progress(i + 1)
 
-    time.sleep(0.8)
-    afficher = True
+        time.sleep(0.8)
+        afficher = True
 
-oui = False
-if afficher:
-    st.write("Cet oiseau est : ", oiseau)
+    oui = False
+    if afficher:
+        st.write("Cet oiseau est : ", oiseau)
