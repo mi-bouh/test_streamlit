@@ -20,4 +20,5 @@ if oui:
     afficher = True
 
 oui = False
-st.write("Cet oiseau est : ", oiseau)
+if afficher:
+    st.write("Cet oiseau est : ", oiseau)
