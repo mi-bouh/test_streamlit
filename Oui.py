@@ -1,11 +1,13 @@
 import librosa
 import streamlit as st
-
-audio = st.audio_input("Enregistrez !")
-oui = st.button("Soumettre l'enregistrement audio")
-oiseau = "Coucou"
 if "afficher" not in st.session_state:
     st.session_state.afficher = False
+
+if not st.session_state.afficher:
+    audio = st.audio_input("Enregistrez !")
+    oui = st.button("Soumettre l'enregistrement audio")
+oiseau = "Coucou"
+
 
 if oui:
     import time
