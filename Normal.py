@@ -1,4 +1,4 @@
-from mutagen.mp3 import MP3 as mp
+import librosa
 
-audio = mp("01 Plus tôt.mp3")
-length = audio.info.length
+audio = "01 Plus tôt.mp3"
+print(round(librosa.get_duration(path = audio), 3))
