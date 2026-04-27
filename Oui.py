@@ -18,6 +18,6 @@ if oui:
         time.sleep(0.07)
         progress_bar.progress(i + 1)
 
-    time.sleep(0.1)
+    time.sleep(0.8)
     afficher = False
     st.write("Cet oiseau est : ", oiseau)
