@@ -20,7 +20,7 @@ if oui:
     time.sleep(0.8)
     st.session_state.afficher = True
     oui = False
-    st.rerun
+    st.rerun()
 
 if st.session_state.afficher:
     st.write("Cet oiseau est : ", oiseau)
