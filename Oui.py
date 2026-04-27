@@ -20,4 +20,6 @@ if oui:
 
     time.sleep(0.8)
     afficher = False
-    st.write("Cet oiseau est : ", oiseau)
+
+oui = False
+st.write("Cet oiseau est : ", oiseau)
