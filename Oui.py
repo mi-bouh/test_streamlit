@@ -13,3 +13,4 @@ if oui:
     st.audio(audio)
     st.write(minutes, "minutes")
     st.write(secondes, "secondes")
+    st.write(secondes-math.floor(secondes), "reste")
