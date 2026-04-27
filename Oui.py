@@ -15,7 +15,7 @@ if oui:
     progress_bar = st.progress(0)
 
     for i in range(200):
-        time.sleep(0.05)
+        time.sleep(0.02)
         progress_bar.progress(i + 1)
 
     afficher = False
