@@ -8,9 +8,7 @@ afficher = False
 
 if oui:
     import time
-    afficher = True
-    if afficher:
-        st.write("Veuillez patienter...")
+    st.write("Veuillez patienter...")
 
     progress_bar = st.progress(0)
 
@@ -19,7 +17,7 @@ if oui:
         progress_bar.progress(i + 1)
 
     time.sleep(0.8)
-    afficher = False
+    afficher = True
 
 oui = False
 st.write("Cet oiseau est : ", oiseau)
