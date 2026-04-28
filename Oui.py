@@ -36,7 +36,7 @@ if st.session_state.progression:
     progress_bar = st.progress(0)
 
     for i in range(100):
-        num = random.uniform(0, 0.2)
+        num = random.uniform(0.05, 0.15)
         time.sleep(num)
         progress_bar.progress(i + 1)
 
