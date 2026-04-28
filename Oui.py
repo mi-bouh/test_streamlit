@@ -49,4 +49,7 @@ if st.session_state.progression:
 
 if st.session_state.resultat:
     st.write("Cet oiseau est un oiseau ")
-    st.session_state.nouveau = st.button("Détecter un nouvel oiseau")
+    reset = st.button("Détecter un nouvel oiseau")
+    if reset:
+        st.session_state.nouveau = True
+        st.rerun()
