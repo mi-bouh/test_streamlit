@@ -6,7 +6,7 @@ import random
 Variables d'affichage :
 progression : Barre de progression + Texte d'attente
 resultat : Nom de l'espèce d'oiseau renvoyé par le modèle
-nouveau
+nouveau : Réinitialisation de l'application après un test
 """
 
 if "progression" not in st.session_state:
@@ -25,12 +25,12 @@ if st.session_state.nouveau:
     st.rerun()
 
 if not st.session_state.progression and not st.session_state.resultat:
-    nouveau = False
     audio = st.audio_input("Enregistrez !")
     oui = st.button("Soumettre l'enregistrement audio")
 
     if oui:
         st.session_state.progression = True
+        st.rerun()
 
 if st.session_state.progression:
     st.write("Veuillez patienter...")
