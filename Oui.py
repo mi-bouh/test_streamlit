@@ -15,11 +15,8 @@ if "progression" not in st.session_state:
 if "resultat" not in st.session_state:
     st.session_state.resultat = False
 
-if "nouveau" not in st.session_state:
-    st.session_state.nouveau = False
-
 if not st.session_state.progression and not st.session_state.resultat:
-    st.session_state.nouveau = False
+    nouveau = False
     audio = st.audio_input("Enregistrez !")
     oui = st.button("Soumettre l'enregistrement audio")
 
@@ -43,7 +40,6 @@ if st.session_state.progression:
 
 if st.session_state.resultat:
     st.write("Cet oiseau est un oiseau ")
-    st.session_state.nouveau = st.button("Détecter un nouvel oiseau")
-
-if st.session_state.nouveau:
-    st.session_state.resultat = False
+    nouveau = st.button("Détecter un nouvel oiseau")
+    if nouveau:
+        st.session_state.resultat = False
