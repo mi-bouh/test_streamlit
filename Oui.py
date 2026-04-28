@@ -22,6 +22,7 @@ if st.session_state.nouveau:
     st.session_state.resultat = False
     st.session_state.progression = False
     st.session_state.nouveau = False
+    st.rerun()
 
 if not st.session_state.progression and not st.session_state.resultat:
     nouveau = False
