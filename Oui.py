@@ -2,12 +2,10 @@ import streamlit as st
 import time
 import random
 
-"""
-Variables d'affichage :
-progression : Barre de progression + Texte d'attente
-resultat : Nom de l'espèce d'oiseau renvoyé par le modèle
-nouveau : Réinitialisation de l'application après un test
-"""
+# Variables d'affichage :
+# progression : Barre de progression + Texte d'attente
+# resultat : Nom de l'espèce d'oiseau renvoyé par le modèle
+# nouveau : Réinitialisation de l'application après un test
 
 if "progression" not in st.session_state:
     st.session_state.progression = False
