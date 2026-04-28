@@ -15,6 +15,13 @@ if "progression" not in st.session_state:
 if "resultat" not in st.session_state:
     st.session_state.resultat = False
 
+if "nouveau" not in st.session_state:
+    st.session_state.nouveau = True
+
+if st.session_state.nouveau:
+    st.session_state.resultat = False
+    st.session_state.progression = False
+
 if not st.session_state.progression and not st.session_state.resultat:
     nouveau = False
     audio = st.audio_input("Enregistrez !")
@@ -30,7 +37,7 @@ if st.session_state.progression:
 
     for i in range(100):
         num = random.uniform(0, 0.5)
-        time.sleep(0.07)
+        time.sleep(num)
         progress_bar.progress(i + 1)
 
     time.sleep(0.8)
@@ -40,6 +47,4 @@ if st.session_state.progression:
 
 if st.session_state.resultat:
     st.write("Cet oiseau est un oiseau ")
-    nouveau = st.button("Détecter un nouvel oiseau")
-    if nouveau:
-        st.session_state.resultat = False
+    st.session_state.nouveau = st.button("Détecter un nouvel oiseau")
