@@ -17,6 +17,15 @@ if "resultat" not in st.session_state:
 if "nouveau" not in st.session_state:
     st.session_state.nouveau = False
 
+if "audio" not in st.session_state:
+    st.session_state.audio = None
+
+if "y" not in st.session_state:
+    st.session_state.y = None
+
+if "sr" not in st.session_state:
+    st.session_state.sr = None
+
 if st.session_state.nouveau:
     st.session_state.resultat = False
     st.session_state.progression = False
@@ -24,7 +33,7 @@ if st.session_state.nouveau:
     st.rerun()
 
 if not st.session_state.progression and not st.session_state.resultat:
-    audio = st.audio_input("Enregistrez !")
+    st.session_state.audio = st.audio_input("Attention ! Notez que seules les 10 premières secondes seront analysées !")
     oui = st.button("Soumettre l'enregistrement audio")
 
     if oui:
@@ -35,7 +44,7 @@ if st.session_state.progression:
     st.write("Veuillez patienter...")
 
     progress_bar = st.progress(0)
-    y, sr = librosa.load(audio, duration=10.0)
+    st.session_state.y, st.session_state.sr = librosa.load(st.session_state.audio, duration=10.0)
     progress_bar.progress(50)
     for i in range(50):
         num = random.uniform(0, 0.15)
@@ -49,6 +58,7 @@ if st.session_state.progression:
 
 if st.session_state.resultat:
     st.write("Cet oiseau est un oiseau ")
+    st.write(librosa.get_duration(y=st.session_state.y, sr=st.session_state.sr))
     reset = st.button("Détecter un nouvel oiseau")
     if reset:
         st.session_state.nouveau = True
