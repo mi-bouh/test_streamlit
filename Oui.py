@@ -17,12 +17,12 @@ if "resultat" not in st.session_state:
 if "nouveau" not in st.session_state:
     st.session_state.nouveau = False
 
-if "audio" not in st.session_state:
-    st.session_state.audio = None
+# if "audio" not in st.session_state:
+#     st.session_state.audio = None
 
 # if "y" not in st.session_state:
 #     st.session_state.y = None
-#
+
 # if "sr" not in st.session_state:
 #     st.session_state.sr = None
 
