@@ -22,7 +22,7 @@ if "audio" not in st.session_state:
     st.session_state.audio = None
 
 if "oiseau" not in st.session_state:
-    st.session_state.oiseau = ""
+    st.session_state.oiseau = "Colibri"
 
 if st.session_state.nouveau:
     st.session_state.resultat = False
