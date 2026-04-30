@@ -46,7 +46,7 @@ if st.session_state.progression:
     for i in range(50):
         num = random.uniform(0, 0.15)
         time.sleep(num)
-        progress_bar.progress(i + 1)
+        progress_bar.progress(i + 51)
 
     time.sleep(0.8)
     st.session_state.oiseau = ""
