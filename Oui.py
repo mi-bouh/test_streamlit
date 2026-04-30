@@ -27,13 +27,14 @@ if st.session_state.nouveau:
     st.rerun()
 
 if not st.session_state.progression and not st.session_state.resultat:
-    st.session_state.audio = st.audio_input("Attention ! Notez que seules les 10 premières secondes seront analysées !")
+    audio_test = st.audio_input("Attention ! Notez que seules les 10 premières secondes seront analysées !")
     oui = st.button("Soumettre l'enregistrement audio")
 
     if oui:
-        if st.session_state.audio is None:
+        if audio_test is None:
             st.write("Aucun enregistrement n'a été détecté !")
         else:
+            st.session_state.audio = audio_test
             st.session_state.progression = True
             st.rerun()
 
