@@ -34,7 +34,7 @@ if not st.session_state.progression and not st.session_state.resultat:
         if audio_test is None:
             st.write("Aucun enregistrement n'a été détecté !")
         else:
-            st.session_state.audio = audio_test
+            st.session_state.audio = audio_test.getvalue()
             st.session_state.progression = True
             st.rerun()
 
