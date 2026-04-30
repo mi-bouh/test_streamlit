@@ -2,6 +2,7 @@ import streamlit as st
 import time
 import random
 import librosa
+import io
 
 # Variables d'affichage :
 # progression : Barre de progression + Texte d'attente
@@ -42,7 +43,8 @@ if st.session_state.progression:
     st.write("Veuillez patienter...")
 
     progress_bar = st.progress(0)
-    y, sr = librosa.load(st.session_state.audio, duration=10.0)
+    audio_buffer = io.BytesIO(st.session_state.audio_bytes)
+    y, sr = librosa.load(audio_buffer, duration=10.0, sr=None)
     progress_bar.progress(50)
     for i in range(50):
         num = random.uniform(0, 0.15)
