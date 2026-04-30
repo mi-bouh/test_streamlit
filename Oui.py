@@ -20,11 +20,11 @@ if "nouveau" not in st.session_state:
 if "audio" not in st.session_state:
     st.session_state.audio = None
 
-if "y" not in st.session_state:
-    st.session_state.y = None
-
-if "sr" not in st.session_state:
-    st.session_state.sr = None
+# if "y" not in st.session_state:
+#     st.session_state.y = None
+#
+# if "sr" not in st.session_state:
+#     st.session_state.sr = None
 
 if st.session_state.nouveau:
     st.session_state.resultat = False
