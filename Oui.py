@@ -45,22 +45,25 @@ if st.session_state.progression:
     progress_bar = st.progress(0)
     audio_buffer = io.BytesIO(st.session_state.audio)
     y, sr = librosa.load(audio_buffer, duration=10.0, sr=None)
-    progress_bar.progress(50)
+    time.sleep(0.8)
+    progress_bar.progress(30)
+
     for i in range(50):
         num = random.uniform(0, 0.15)
         time.sleep(num)
         progress_bar.progress(i + 51)
 
     time.sleep(0.8)
-    st.session_state.oiseau = ""
+    # Insérer l'intégration du modèle ici éventuellement :
+    st.session_state.oiseau = "Colibri"
     st.session_state.duration = librosa.get_duration(y=y, sr=sr)
     st.session_state.progression = False
     st.session_state.resultat = True
     st.rerun()
 
 if st.session_state.resultat:
-    st.write(st.session_state.oiseau)
-    st.write(st.session_state.duration)
+    st.write(f"L'espèce d'oiseau détectée est : {st.session_state.oiseau}")
+    st.write(f"L'enregistrement a une durée de {st.session_state.duration}")
     reset = st.button("Détecter un nouvel oiseau")
     if reset:
         st.session_state.nouveau = True
