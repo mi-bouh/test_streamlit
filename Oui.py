@@ -50,18 +50,14 @@ if st.session_state.progression:
     y, sr = librosa.load(audio_buffer, duration=10.0, sr=None)
     time.sleep(0.8)
     progress_bar.progress(30)
-
-    for i in range(50):
-        num = random.uniform(0, 0.15)
-        time.sleep(num)
-        progress_bar.progress(i + 51)
-
-    time.sleep(0.8)
-    # Insérer l'intégration du modèle ici éventuellement :
+    # Insérer l'intégration du modèle ici éventuellement
+    progress_bar.progress(90)
     st.session_state.oiseau = "Colibri"
     st.session_state.duration = librosa.get_duration(y=y, sr=sr)
     st.session_state.progression = False
     st.session_state.resultat = True
+    progress_bar.progress(100)
+    time.sleep(0.8)
     st.rerun()
 
 if st.session_state.resultat:
