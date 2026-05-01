@@ -26,6 +26,9 @@ if "audio" not in st.session_state:
 if "oiseau" not in st.session_state:
     st.session_state.oiseau = "Colibri"
 
+if "duration" not in st.session_state:
+    st.session_state.duration = 0
+
 if st.session_state.nouveau:
     st.session_state.resultat = False
     st.session_state.progression = False
