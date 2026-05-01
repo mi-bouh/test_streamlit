@@ -69,7 +69,7 @@ if st.session_state.progression:
 
 if st.session_state.resultat:
     st.write(f"L'espèce d'oiseau détectée est : {st.session_state.oiseau}")
-    st.write(f"L'enregistrement a une durée de {st.session_state.duration} secondes")
+    st.write(f"L'enregistrement avait une durée de {st.session_state.duration} secondes")
     reset = st.button("Détecter un nouvel oiseau")
     if reset:
         st.session_state.nouveau = True
