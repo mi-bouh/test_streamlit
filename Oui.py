@@ -41,6 +41,8 @@ if not st.session_state.progression and not st.session_state.resultat:
             st.write("Aucun enregistrement n'a été détecté !")
         else:
             st.session_state.audio = audio_test.getvalue()
+            y, sr = librosa.load(audio_test)
+            st.session_state.duration = librosa.get_duration(y=y, sr=sr)
             st.session_state.progression = True
             st.rerun()
 
