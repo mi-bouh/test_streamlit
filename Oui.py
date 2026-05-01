@@ -1,8 +1,10 @@
 import streamlit as st
 import time
-import random
+import Transfert
 import librosa
 import io
+
+from Transfert import spectrogram_matrice, repeat_matrices
 
 # Variables d'affichage :
 # progression : Barre de progression + Texte d'attente
@@ -31,7 +33,7 @@ if st.session_state.nouveau:
     st.rerun()
 
 if not st.session_state.progression and not st.session_state.resultat:
-    audio_test = st.audio_input("Attention ! Notez que seules les 10 premières secondes seront analysées !")
+    audio_test = st.audio_input("Attention ! Notez que seules les 10 premières secondes seront analysées !", sample_rate=22050)
     oui = st.button("Soumettre l'enregistrement audio")
 
     if oui:
@@ -47,13 +49,13 @@ if st.session_state.progression:
 
     progress_bar = st.progress(0)
     audio_buffer = io.BytesIO(st.session_state.audio)
-    y, sr = librosa.load(audio_buffer, duration=10.0, sr=None)
+    spectro = spectrogram_matrice(audio_buffer)
+    uniforme = repeat_matrices(spectro)
     time.sleep(0.8)
-    progress_bar.progress(30)
+    progress_bar.progress(10)
     # Insérer l'intégration du modèle ici éventuellement
-    progress_bar.progress(90)
     st.session_state.oiseau = "Colibri"
-    st.session_state.duration = librosa.get_duration(y=y, sr=sr)
+    progress_bar.progress(90)
     st.session_state.progression = False
     st.session_state.resultat = True
     progress_bar.progress(100)
@@ -62,7 +64,6 @@ if st.session_state.progression:
 
 if st.session_state.resultat:
     st.write(f"L'espèce d'oiseau détectée est : {st.session_state.oiseau}")
-    st.write(f"L'enregistrement a une durée de {st.session_state.duration} secondes")
     reset = st.button("Détecter un nouvel oiseau")
     if reset:
         st.session_state.nouveau = True
