@@ -36,7 +36,7 @@ if not st.session_state.progression and not st.session_state.resultat:
         if audio_record is None and audio_upload is None:
             st.error("Aucun enregistrement n'a été détecté !")
         elif audio_record is None:
-            type_mime = audio_record.type
+            type_mime = audio_upload.type
             if type_mime in ["mp3", "wav"]:
                 st.session_state.audio = audio_upload.getvalue()
                 y, sr = librosa.load(audio_upload)
