@@ -1,11 +1,8 @@
-import os
 import streamlit as st
 import time
 import librosa
 import io
 import tempfile
-
-from pydub import AudioSegment
 
 from Transfert import spectrogram_matrice, repeat_matrices
 
