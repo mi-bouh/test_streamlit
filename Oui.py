@@ -29,33 +29,37 @@ if st.session_state.nouveau:
     st.rerun()
 
 # Affichage de l'écran principal
+boite = st.empty()
 if not st.session_state.progression and not st.session_state.resultat:
-    audio_record = st.audio_input("Enregistrez un son (seules les 10 premières secondes seront analysées) :", sample_rate=22050)
-    audio_upload = st.file_uploader("Ou téléversez un fichier :", type=["mp3", "wav"])
-    oui = st.button("Soumettre l'enregistrement audio")
+    with boite.container():
+        audio_record = st.audio_input("Enregistrez un son (seules les 10 premières secondes seront analysées) :", sample_rate=22050)
+        audio_upload = st.file_uploader("Ou téléversez un fichier :", type=["mp3", "wav"])
+        oui = st.button("Soumettre l'enregistrement audio")
 
-    # Enregistrement envoyé via le bouton
-    if oui:
-        # Dans le cas où aucun enregistrement n'est fourni
-        if audio_record is None and audio_upload is None:
-            st.error("Aucun enregistrement n'a été détecté !")
+        # Enregistrement envoyé via le bouton
+        if oui:
+            # Dans le cas où aucun enregistrement n'est fourni
+            if audio_record is None and audio_upload is None:
+                st.error("Aucun enregistrement n'a été détecté !")
 
-        # Dans le cas d'un fichier téléversé
-        elif audio_record is None:
-            if audio_upload.type in ["audio/mpeg", "audio/mp3", "audio/wav"]:
-                st.session_state.audio = audio_upload
-                st.session_state.format = audio_upload.type
-                st.session_state.progression = True
-                st.rerun()
+            # Dans le cas d'un fichier téléversé
+            elif audio_record is None:
+                if audio_upload.type in ["audio/mpeg", "audio/mp3", "audio/wav"]:
+                    st.session_state.audio = audio_upload
+                    st.session_state.format = audio_upload.type
+                    st.session_state.progression = True
+                    boite.empty()
+                    st.rerun()
+                else:
+                    st.error("Le format du fichier n'est pas valide")
+
+            # Dans le cas d'un fichier enregistré
             else:
-                st.error("Le format du fichier n'est pas valide")
-
-        # Dans le cas d'un fichier enregistré
-        else:
-            st.session_state.audio = audio_record
-            st.session_state.format = audio_record.type
-            st.session_state.progression = True
-            st.rerun()
+                st.session_state.audio = audio_record
+                st.session_state.format = audio_record.type
+                st.session_state.progression = True
+                boite.empty()
+                st.rerun()
 
 time.sleep(0.2)
 # Affichage de la barre de chargement
