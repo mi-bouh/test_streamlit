@@ -42,7 +42,7 @@ if not st.session_state.progression and not st.session_state.resultat:
 
         # Dans le cas d'un fichier téléversé
         elif audio_record is None:
-            if audio_upload.type in ["audio/mp3", "audio/wav"]:
+            if audio_upload.type in ["audio/mpeg", "audio/mp3", "audio/wav"]:
                 st.session_state.audio = audio_upload
                 st.session_state.format = audio_upload.type
                 st.session_state.progression = True
