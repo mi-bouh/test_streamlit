@@ -57,6 +57,7 @@ if not st.session_state.progression and not st.session_state.resultat:
             st.session_state.progression = True
             st.rerun()
 
+time.sleep(0.2)
 # Affichage de la barre de chargement
 if st.session_state.progression:
     st.write("Veuillez patienter...")
