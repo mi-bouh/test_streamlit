@@ -42,7 +42,7 @@ if not st.session_state.progression and not st.session_state.resultat:
 
         # Dans le cas d'un fichier téléversé
         elif audio_record is None:
-            if audio_upload.type in ["mp3", "wav"]:
+            if audio_upload.type in ["audio/mp3", "audio/wav"]:
                 st.session_state.audio = audio_upload
                 st.session_state.format = audio_upload.type
                 st.session_state.progression = True
@@ -62,7 +62,7 @@ if st.session_state.progression:
     st.write("Veuillez patienter...")
     progress_bar = st.progress(0)
 
-    if st.session_state.format == "mp3":
+    if st.session_state.format == "audio/mp3":
         with tempfile.NamedTemporaryFile(delete=False, suffix=".mp3") as tmp_file:
             tmp_file.write(st.session_state.audio.getvalue())
             st.session_state.audio = tmp_file.name
@@ -72,6 +72,7 @@ if st.session_state.progression:
 
     audio_transform = st.session_state.audio.getvalue()
     audio_buffer = io.BytesIO(audio_transform)
+
     uniforme = repeat_matrices(spectrogram_matrice(audio_buffer))
     time.sleep(0.8)
     progress_bar.progress(10)
