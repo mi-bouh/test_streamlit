@@ -26,10 +26,8 @@ if st.session_state.nouveau:
 
 # Affichage de l'écran principal
 if not st.session_state.progression and not st.session_state.resultat:
-    st.write("Fournissez un enregistrement audio à analyser :")
-    st.write("Attention! Si deux enregistrements sont fournis, le fichier téléversé sera ignoré !")
-    audio_record = st.audio_input("Attention ! Notez que seules les 10 premières secondes seront analysées !", sample_rate=22050)
-    audio_upload = st.file_uploader("Ou téléversez un fichier", type=["mp3", "wav"])
+    audio_record = st.audio_input("Enregistrez un son (seules les 10 premières secondes seront analysées) !", sample_rate=22050)
+    audio_upload = st.file_uploader("Ou téléversez un fichier :", type=["mp3", "wav"])
     oui = st.button("Soumettre l'enregistrement audio")
 
     if oui:
