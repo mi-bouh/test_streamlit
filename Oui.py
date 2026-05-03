@@ -1,7 +1,12 @@
+import os
 import streamlit as st
 import time
 import librosa
 import io
+import tempfile
+
+from pydub import AudioSegment
+
 from Transfert import spectrogram_matrice, repeat_matrices
 
 if "progression" not in st.session_state:
@@ -16,6 +21,8 @@ if "oiseau" not in st.session_state:
     st.session_state.oiseau = "Colibri"
 if "duration" not in st.session_state:
     st.session_state.duration = 0
+if "format" not in st.session_state:
+    st.session_state.format = ""
 
 # À la réinitialisation de l'application
 if st.session_state.nouveau:
@@ -26,36 +33,46 @@ if st.session_state.nouveau:
 
 # Affichage de l'écran principal
 if not st.session_state.progression and not st.session_state.resultat:
-    audio_record = st.audio_input("Enregistrez un son (seules les 10 premières secondes seront analysées) !", sample_rate=22050)
+    audio_record = st.audio_input("Enregistrez un son (seules les 10 premières secondes seront analysées) :", sample_rate=22050)
     audio_upload = st.file_uploader("Ou téléversez un fichier :", type=["mp3", "wav"])
     oui = st.button("Soumettre l'enregistrement audio")
 
+    # Enregistrement envoyé via le bouton
     if oui:
+        # Dans le cas où aucun enregistrement n'est fourni
         if audio_record is None and audio_upload is None:
             st.error("Aucun enregistrement n'a été détecté !")
+
+        # Dans le cas d'un fichier téléversé
         elif audio_record is None:
-            type_mime = audio_upload.type
-            if type_mime in ["mp3", "wav"]:
-                st.session_state.audio = audio_upload.getvalue()
-                y, sr = librosa.load(audio_upload)
-                st.session_state.duration = librosa.get_duration(y=y, sr=sr)
+            if audio_upload.type in ["mp3", "wav"]:
+                st.session_state.audio = audio_upload
+                st.session_state.format = audio_upload.type
                 st.session_state.progression = True
                 st.rerun()
             else:
                 st.error("Le format du fichier n'est pas valide")
-                st.rerun()
+
+        # Dans le cas d'un fichier enregistré
         else:
-            st.session_state.audio = audio_record.getvalue()
-            y, sr = librosa.load(audio_record)
-            st.session_state.duration = librosa.get_duration(y=y, sr=sr)
+            st.session_state.audio = audio_record
+            st.session_state.format = audio_record.type
             st.session_state.progression = True
             st.rerun()
 
 # Affichage de la barre de chargement
 if st.session_state.progression:
     st.write("Veuillez patienter...")
-
     progress_bar = st.progress(0)
+
+    if st.session_state.format == "mp3":
+        with tempfile.NamedTemporaryFile(delete=False, suffix=".mp3") as tmp_file:
+            tmp_file.write(st.session_state.audio.getValue())
+            st.session_state.audio = tmp_file.name
+
+    y, sr = librosa.load(st.session_state.audio)
+    st.session_state.duration = librosa.get_duration(y=y, sr=sr)
+
     audio_buffer = io.BytesIO(st.session_state.audio)
     uniforme = repeat_matrices(spectrogram_matrice(audio_buffer))
     time.sleep(0.8)
