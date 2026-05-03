@@ -64,13 +64,14 @@ if st.session_state.progression:
 
     if st.session_state.format == "mp3":
         with tempfile.NamedTemporaryFile(delete=False, suffix=".mp3") as tmp_file:
-            tmp_file.write(st.session_state.audio.getValue())
+            tmp_file.write(st.session_state.audio.getvalue())
             st.session_state.audio = tmp_file.name
 
     y, sr = librosa.load(st.session_state.audio)
     st.session_state.duration = librosa.get_duration(y=y, sr=sr)
 
-    audio_buffer = io.BytesIO(st.session_state.audio)
+    audio_transform = st.session_state.audio.getvalue()
+    audio_buffer = io.BytesIO(audio_transform)
     uniforme = repeat_matrices(spectrogram_matrice(audio_buffer))
     time.sleep(0.8)
     progress_bar.progress(10)
